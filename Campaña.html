@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Digestivo - Guía Completa</title>
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+            --header-gradient-start: #0f3460;
+            --header-gradient-end: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #4db8ff;
+            --section-bg: rgba(22, 33, 62, 0.8);
+            --card-bg: rgba(15, 52, 96, 0.6);
+            --card-bg-hover: rgba(15, 52, 96, 0.9);
+            --list-bg: rgba(15, 52, 96, 0.4);
+            --border-color: rgba(0, 212, 255, 0.2);
+            --border-color-hover: rgba(0, 212, 255, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body.light-theme {
+            /* Light Theme */
+            --bg-gradient-start: #f0f4f8;
+            --bg-gradient-end: #d9e2ec;
+            --header-gradient-start: #0077b6;
+            --header-gradient-end: #0096c7;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-primary: #0077b6;
+            --accent-secondary: #0096c7;
+            --section-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(224, 242, 254, 0.8);
+            --card-bg-hover: rgba(224, 242, 254, 1);
+            --list-bg: rgba(240, 249, 255, 0.6);
+            --border-color: rgba(0, 119, 182, 0.3);
+            --border-color-hover: rgba(0, 119, 182, 0.6);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.green-theme {
+            /* Green Theme */
+            --bg-gradient-start: #1a2e1a;
+            --bg-gradient-end: #162116;
+            --header-gradient-start: #0f4620;
+            --header-gradient-end: #163e16;
+            --text-primary: #e0ffe0;
+            --text-secondary: #a0c0a0;
+            --accent-primary: #00ff88;
+            --accent-secondary: #4dffaa;
+            --section-bg: rgba(22, 62, 22, 0.8);
+            --card-bg: rgba(15, 82, 15, 0.6);
+            --card-bg-hover: rgba(15, 82, 15, 0.9);
+            --list-bg: rgba(15, 82, 15, 0.4);
+            --border-color: rgba(0, 255, 136, 0.2);
+            --border-color-hover: rgba(0, 255, 136, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body.purple-theme {
+            /* Purple Theme */
+            --bg-gradient-start: #2e1a2e;
+            --bg-gradient-end: #211621;
+            --header-gradient-start: #46104f;
+            --header-gradient-end: #3e163e;
+            --text-primary: #ffe0ff;
+            --text-secondary: #c0a0c0;
+            --accent-primary: #d400ff;
+            --accent-secondary: #ff4dff;
+            --section-bg: rgba(62, 22, 62, 0.8);
+            --card-bg: rgba(82, 15, 82, 0.6);
+            --card-bg-hover: rgba(82, 15, 82, 0.9);
+            --list-bg: rgba(82, 15, 82, 0.4);
+            --border-color: rgba(212, 0, 255, 0.2);
+            --border-color-hover: rgba(212, 0, 255, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-end) 100%);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: relative;
+            transition: background 0.5s ease;
+        }
+
+        header h1 {
+            color: var(--accent-primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.5s ease;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: color 0.5s ease;
+        }
+
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--section-bg);
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            display: flex;
+            gap: 10px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-switcher:hover {
+            border-color: var(--border-color-hover);
+            transform: scale(1.05);
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+            border-color: white;
+        }
+
+        .theme-btn.active {
+            border-color: white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .theme-btn.dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #00d4ff 100%);
+        }
+
+        .theme-btn.light {
+            background: linear-gradient(135deg, #f0f4f8 0%, #0077b6 100%);
+        }
+
+        .theme-btn.green {
+            background: linear-gradient(135deg, #1a2e1a 0%, #00ff88 100%);
+        }
+
+        .theme-btn.purple {
+            background: linear-gradient(135deg, #2e1a2e 0%, #d400ff 100%);
+        }
+
+        .theme-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .theme-btn:hover .theme-label {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: var(--section-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-color-hover);
+        }
+
+        .section h2 {
+            color: var(--accent-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 0.5rem;
+            transition: color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .section h3 {
+            color: var(--accent-secondary);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.5s ease;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .organs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .organ-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-primary);
+            transition: all 0.5s ease;
+        }
+
+        .organ-card:hover {
+            background: var(--card-bg-hover);
+            transform: translateX(5px);
+        }
+
+        .organ-card h4 {
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.5s ease;
+        }
+
+        .list-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .list-box {
+            background: var(--list-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+        }
+
+        .list-box h4 {
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            transition: color 0.5s ease;
+        }
+
+        .list-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .list-box li:before {
+            content: "▸";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        .quiz-container {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            transition: all 0.5s ease;
+        }
+
+        .question {
+            background: var(--section-bg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-primary);
+            transition: all 0.5s ease;
+        }
+
+        .question h4 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            transition: color 0.5s ease;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            background: var(--card-bg);
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: var(--card-bg-hover);
+            border-color: var(--accent-secondary);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-gradient-start);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px var(--shadow-color);
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.pass {
+            background: rgba(0, 212, 100, 0.2);
+            border: 2px solid #00d464;
+            color: #00ff88;
+        }
+
+        .result.fail {
+            background: rgba(212, 0, 0, 0.2);
+            border: 2px solid #d40000;
+            color: #ff6666;
+        }
+
+        footer {
+            background: var(--card-bg-hover);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            transition: all 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .organs-grid, .list-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-btn dark active" onclick="changeTheme('dark')" title="Tema Oscuro">
+            <span class="theme-label">Oscuro</span>
+        </button>
+        <button class="theme-btn light" onclick="changeTheme('light')" title="Tema Claro">
+            <span class="theme-label">Claro</span>
+        </button>
+        <button class="theme-btn green" onclick="changeTheme('green')" title="Tema Verde">
+            <span class="theme-label">Verde</span>
+        </button>
+        <button class="theme-btn purple" onclick="changeTheme('purple')" title="Tema Morado">
+            <span class="theme-label">Morado</span>
+        </button>
+    </div>
+
+    <header>
+        <h1>🫁 Sistema Digestivo</h1>
+        <p>Guía completa sobre el funcionamiento, cuidado y salud digestiva</p>
+    </header>
+
+    <div class="container">
+        <!-- Sección: ¿Para qué sirve? -->
+        <section class="section">
+            <h2>¿Para qué sirve el Sistema Digestivo?</h2>
+            <p>
+                El sistema digestivo es uno de los sistemas más importantes del cuerpo humano, responsable de transformar los alimentos que consumimos en nutrientes esenciales que nuestro organismo necesita para funcionar correctamente. Su función principal es descomponer mecánica y químicamente los alimentos, absorber los nutrientes resultantes y eliminar los desechos que el cuerpo no necesita.
+            </p>
+            <p>
+                Este complejo sistema realiza cuatro funciones fundamentales: la <strong>ingestión</strong> (entrada de alimentos), la <strong>digestión</strong> (descomposición de alimentos en moléculas más pequeñas), la <strong>absorción</strong> (paso de nutrientes al torrente sanguíneo) y la <strong>eliminación</strong> (expulsión de desechos). Sin un sistema digestivo saludable, nuestro cuerpo no podría obtener la energía necesaria para realizar actividades diarias, reparar tejidos, combatir enfermedades o mantener funciones vitales.
+            </p>
+        </section>
+
+        <!-- Sección: Órganos -->
+        <section class="section">
+            <h2>Órganos del Sistema Digestivo</h2>
+            <p>El sistema digestivo está compuesto por un conjunto de órganos que trabajan en armonía para procesar los alimentos:</p>
+            
+            <div class="organs-grid">
+                <div class="organ-card">
+                    <h4>Boca</h4>
+                    <p>Inicia la digestión mecánica mediante la masticación y química con la saliva, que contiene enzimas como la amilasa.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Esófago</h4>
+                    <p>Tubo muscular que transporta el alimento desde la boca hasta el estómago mediante movimientos peristálticos.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Estómago</h4>
+                    <p>Órgano en forma de bolsa que mezcla los alimentos con jugos gástricos ácidos para continuar la digestión.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Intestino Delgado</h4>
+                    <p>Órgano más largo del sistema digestivo donde ocurre la mayor parte de la absorción de nutrientes.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Intestino Grueso</h4>
+                    <p>Absorbe agua y electrolitos, formando las heces a partir de los residuos no digeridos.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Hígado</h4>
+                    <p>Produce bilis para emulsionar grasas y procesa nutrientes absorbidos desde el intestino.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Páncreas</h4>
+                    <p>Secreta enzimas digestivas y hormonas como la insulina para regular el azúcar en sangre.</p>
+                </div>
+                <div class="organ-card">
+                    <h4>Vesícula Biliar</h4>
+                    <p>Almacena y concentra la bilis producida por el hígado hasta que se necesita para la digestión.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Alimentos -->
+        <section class="section">
+            <h2>Alimentos Beneficiosos para el Sistema Digestivo</h2>
+            <p>Una alimentación adecuada es fundamental para mantener un sistema digestivo saludable. Los siguientes alimentos promueven una digestión óptima:</p>
+            
+            <div class="list-container">
+                <div class="list-box">
+                    <h4>Alimentos Ricos en Fibra</h4>
+                    <ul>
+                        <li>Avena y cereales integrales</li>
+                        <li>Frutas (manzanas, peras, ciruelas)</li>
+                        <li>Verduras (brócoli, zanahorias, espinacas)</li>
+                        <li>Legumbres (lentejas, garbanzos, frijoles)</li>
+                        <li>Frutos secos y semillas</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Probióticos y Prebióticos</h4>
+                    <ul>
+                        <li>Yogur natural con cultivos vivos</li>
+                        <li>Kéfir</li>
+                        <li>Chucrut y kimchi</li>
+                        <li>Ajo y cebolla</li>
+                        <li>Plátanos verdes</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Alimentos Hidratantes</h4>
+                    <ul>
+                        <li>Agua (8 vasos diarios)</li>
+                        <li>Pepino</li>
+                        <li>Sandía y melón</li>
+                        <li>Caldos y sopas</li>
+                        <li>Infusiones herbales</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Proteínas Magras</h4>
+                    <ul>
+                        <li>Pescado (salmón, atún)</li>
+                        <li>Pollo sin piel</li>
+                        <li>Pavo</li>
+                        <li>Huevos</li>
+                        <li>Tofu</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Enfermedades -->
+        <section class="section">
+            <h2>Enfermedades del Sistema Digestivo</h2>
+            <p>El sistema digestivo puede verse afectado por diversas enfermedades que comprometen su funcionamiento:</p>
+            
+            <div class="list-container">
+                <div class="list-box">
+                    <h4>Enfermedades Comunes</h4>
+                    <ul>
+                        <li><strong>Gastritis:</strong> Inflamación del revestimiento del estómago</li>
+                        <li><strong>Reflujo Gastroesofágico:</strong> Retorno del ácido estomacal al esófago</li>
+                        <li><strong>Úlceras Pépticas:</strong> Llagas en el estómago o duodeno</li>
+                        <li><strong>Síndrome del Intestino Irritable:</strong> Trastorno funcional intestinal</li>
+                        <li><strong>Estreñimiento:</strong> Dificultad para evacuar</li>
+                        <li><strong>Diarrea:</strong> Evacuaciones líquidas frecuentes</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Enfermedades Graves</h4>
+                    <ul>
+                        <li><strong>Enfermedad de Crohn:</strong> Inflamación crónica del tracto digestivo</li>
+                        <li><strong>Colitis Ulcerosa:</strong> Inflamación del colon y recto</li>
+                        <li><strong>Cáncer Colorrectal:</strong> Tumores malignos en el colon o recto</li>
+                        <li><strong>Hepatitis:</strong> Inflamación del hígado</li>
+                        <li><strong>Cirrosis:</strong> Daño hepático crónico</li>
+                        <li><strong>Pancreatitis:</strong> Inflamación del páncreas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Remedios Naturales para Prevenir -->
+        <section class="section">
+            <h2>Remedios Naturales para Prevenir Enfermedades Digestivas</h2>
+            <p>La prevención es la mejor estrategia para mantener un sistema digestivo saludable. Estos remedios naturales pueden ayudar:</p>
+            
+            <div class="list-container">
+                <div class="list-box">
+                    <h4>Infusiones Preventivas</h4>
+                    <ul>
+                        <li><strong>Té de jengibre:</strong> Estimula la digestión y previene náuseas</li>
+                        <li><strong>Manzanilla:</strong> Propiedades antiinflamatorias y calmantes</li>
+                        <li><strong>Menta:</strong> Alivia la hinchazón y mejora la digestión</li>
+                        <li><strong>Té verde:</strong> Antioxidante y protector hepático</li>
+                        <li><strong>Hinojo:</strong> Reduce gases y cólicos</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Hábitos Saludables</h4>
+                    <ul>
+                        <li>Masticar lentamente los alimentos</li>
+                        <li>Comer porciones moderadas</li>
+                        <li>Mantener horarios regulares de comida</li>
+                        <li>Evitar acostarse inmediatamente después de comer</li>
+                        <li>Realizar ejercicio regularmente</li>
+                        <li>Reducir el estrés mediante meditación o yoga</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Suplementos Naturales</h4>
+                    <ul>
+                        <li><strong>Probióticos:</strong> Mantienen flora intestinal saludable</li>
+                        <li><strong>Fibra de psyllium:</strong> Mejora el tránsito intestinal</li>
+                        <li><strong>Aloe vera:</strong> Propiedades antiinflamatorias</li>
+                        <li><strong>Cúrcuma:</strong> Antiinflamatorio natural</li>
+                        <li><strong>Enzimas digestivas:</strong> Facilitan la digestión</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Alimentos Preventivos</h4>
+                    <ul>
+                        <li>Consumir frutas y verduras diariamente</li>
+                        <li>Incluir granos enteros en la dieta</li>
+                        <li>Beber suficiente agua</li>
+                        <li>Limitar alimentos procesados</li>
+                        <li>Reducir consumo de alcohol y cafeína</li>
+                        <li>Evitar alimentos muy picantes o grasosos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Remedios Naturales para Curar -->
+        <section class="section">
+            <h2>Remedios Naturales para Tratar Enfermedades Digestivas</h2>
+            <p>Cuando ya existen molestias digestivas, estos remedios naturales pueden ayudar a aliviar los síntomas:</p>
+            
+            <div class="list-container">
+                <div class="list-box">
+                    <h4>Para Acidez y Reflujo</h4>
+                    <ul>
+                        <li><strong>Bicarbonato de sodio:</strong> Neutraliza el ácido estomacal</li>
+                        <li><strong>Jugo de aloe vera:</strong> Calma la irritación esofágica</li>
+                        <li><strong>Vinagre de manzana:</strong> Equilibra el pH estomacal</li>
+                        <li><strong>Plátano maduro:</strong> Protege el revestimiento estomacal</li>
+                        <li><strong>Almendras:</strong> Neutralizan la acidez</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Para Estreñimiento</h4>
+                    <ul>
+                        <li><strong>Agua tibia con limón:</strong> Estimula el movimiento intestinal</li>
+                        <li><strong>Ciruelas pasas:</strong> Laxante natural suave</li>
+                        <li><strong>Semillas de lino:</strong> Ricas en fibra soluble</li>
+                        <li><strong>Aceite de oliva:</strong> Lubrica el intestino</li>
+                        <li><strong>Kiwi:</strong> Mejora la función intestinal</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Para Diarrea</h4>
+                    <ul>
+                        <li><strong>Arroz blanco:</strong> Astringente natural</li>
+                        <li><strong>Plátano verde:</strong> Reafirma las heces</li>
+                        <li><strong>Té de manzanilla:</strong> Calma la inflamación intestinal</li>
+                        <li><strong>Zanahoria cocida:</strong> Restaura la flora intestinal</li>
+                        <li><strong>Suero oral casero:</strong> Previene deshidratación</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Para Gases e Hinchazón</h4>
+                    <ul>
+                        <li><strong>Té de anís:</strong> Carminativo natural</li>
+                        <li><strong>Carbón activado:</strong> Absorbe gases intestinales</li>
+                        <li><strong>Papaya:</strong> Contiene enzimas digestivas</li>
+                        <li><strong>Comino:</strong> Reduce la formación de gases</li>
+                        <li><strong>Masaje abdominal:</strong> Estimula el movimiento intestinal</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Para Gastritis</h4>
+                    <ul>
+                        <li><strong>Jugo de papa cruda:</strong> Protector de mucosa gástrica</li>
+                        <li><strong>Regaliz:</strong> Antiinflamatorio y cicatrizante</li>
+                        <li><strong>Miel de manuka:</strong> Propiedades antibacterianas</li>
+                        <li><strong>Agua de coco:</strong> Alcaliniza el estómago</li>
+                        <li><strong>Gelatina sin sabor:</strong> Protege el revestimiento estomacal</li>
+                    </ul>
+                </div>
+                <div class="list-box">
+                    <h4>Para Náuseas</h4>
+                    <ul>
+                        <li><strong>Jengibre fresco:</strong> Antiemético natural</li>
+                        <li><strong>Limón:</strong> Aroma y sabor que calman náuseas</li>
+                        <li><strong>Menta:</strong> Relaja el estómago</li>
+                        <li><strong>Galletas saladas:</strong> Absorben ácido estomacal</li>
+                        <li><strong>Acupresión:</strong> Punto P6 en la muñeca</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p style="margin-top: 1.5rem; padding: 1rem; background: rgba(212, 0, 0, 0.2); border-left: 4px solid #ff6666; border-radius: 5px;">
+                <strong>⚠️ Nota Importante:</strong> Estos remedios naturales son complementarios y no sustituyen el tratamiento médico profesional. Si los síntomas persisten o empeoran, consulte a un médico inmediatamente.
+            </p>
+        </section>
+
+        <!-- Sección: Cuestionario -->
+        <section class="section">
+            <h2>📝 Cuestionario de Cultura General del Sistema Digestivo</h2>
+            <p>Pon a prueba tus conocimientos sobre el sistema digestivo con este breve cuestionario:</p>
+            
+            <div class="quiz-container">
+                <form id="quizForm">
+                    <div class="question">
+                        <h4>1. ¿Cuál es el órgano más largo del sistema digestivo?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q1a" name="q1" value="a">
+                                <label for="q1a">Esófago</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1b" name="q1" value="b">
+                                <label for="q1b">Intestino delgado</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1c" name="q1" value="c">
+                                <label for="q1c">Intestino grueso</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1d" name="q1" value="d">
+                                <label for="q1d">Estómago</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>2. ¿Qué órgano produce la bilis?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q2a" name="q2" value="a">
+                                <label for="q2a">Páncreas</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2b" name="q2" value="b">
+                                <label for="q2b">Vesícula biliar</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2c" name="q2" value="c">
+                                <label for="q2c">Hígado</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2d" name="q2" value="d">
+                                <label for="q2d">Estómago</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>3. ¿Cuál de estos alimentos es rico en probióticos?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q3a" name="q3" value="a">
+                                <label for="q3a">Pan blanco</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3b" name="q3" value="b">
+                                <label for="q3b">Yogur natural</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3c" name="q3" value="c">
+                                <label for="q3c">Carne roja</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3d" name="q3" value="d">
+                                <label for="q3d">Arroz</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>4. ¿Qué enzima presente en la saliva inicia la digestión de carbohidratos?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q4a" name="q4" value="a">
+                                <label for="q4a">Pepsina</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4b" name="q4" value="b">
+                                <label for="q4b">Lipasa</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4c" name="q4" value="c">
+                                <label for="q4c">Amilasa</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4d" name="q4" value="d">
+                                <label for="q4d">Tripsina</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>5. ¿Cuál es la función principal del intestino grueso?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q5a" name="q5" value="a">
+                                <label for="q5a">Producir enzimas digestivas</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5b" name="q5" value="b">
+                                <label for="q5b">Absorber agua y formar heces</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5c" name="q5" value="c">
+                                <label for="q5c">Descomponer proteínas</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5d" name="q5" value="d">
+                                <label for="q5d">Almacenar bilis</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>6. ¿Qué remedio natural es efectivo para aliviar la acidez estomacal?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q6a" name="q6" value="a">
+                                <label for="q6a">Café negro</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q6b" name="q6" value="b">
+                                <label for="q6b">Aloe vera</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q6c" name="q6" value="c">
+                                <label for="q6c">Bebidas carbonatadas</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q6d" name="q6" value="d">
+                                <label for="q6d">Comida picante</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>7. ¿Cuántos metros aproximadamente mide el intestino delgado en un adulto?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q7a" name="q7" value="a">
+                                <label for="q7a">1-2 metros</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q7b" name="q7" value="b">
+                                <label for="q7b">3-4 metros</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q7c" name="q7" value="c">
+                                <label for="q7c">6-7 metros</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q7d" name="q7" value="d">
+                                <label for="q7d">10-12 metros</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>8. ¿Qué enfermedad se caracteriza por la inflamación crónica del tracto digestivo?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q8a" name="q8" value="a">
+                                <label for="q8a">Gastritis</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q8b" name="q8" value="b">
+                                <label for="q8b">Enfermedad de Crohn</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q8c" name="q8" value="c">
+                                <label for="q8c">Reflujo</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q8d" name="q8" value="d">
+                                <label for="q8d">Estreñimiento</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>9. ¿Cuál de estos alimentos es mejor para prevenir el estreñimiento?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q9a" name="q9" value="a">
+                                <label for="q9a">Queso</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q9b" name="q9" value="b">
+                                <label for="q9b">Chocolate</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q9c" name="q9" value="c">
+                                <label for="q9c">Ciruelas pasas</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q9d" name="q9" value="d">
+                                <label for="q9d">Pan blanco</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>10. ¿Qué hormona produce el páncreas para regular el azúcar en sangre?</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q10a" name="q10" value="a">
+                                <label for="q10a">Adrenalina</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q10b" name="q10" value="b">
+                                <label for="q10b">Insulina</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q10c" name="q10" value="c">
+                                <label for="q10c">Tiroxina</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q10d" name="q10" value="d">
+                                <label for="q10d">Cortisol</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-btn" onclick="checkQuiz()">Verificar Respuestas</button>
+                </form>
+
+                <div id="result" class="result"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 Sistema Digestivo - Guía Educativa | Información con fines educativos</p>
+        <p>Consulte siempre a un profesional de la salud para diagnóstico y tratamiento</p>
+    </footer>
+
+    <script>
+        function checkQuiz() {
+            // Respuestas correctas
+            const answers = {
+                q1: 'b', // Intestino delgado
+                q2: 'c', // Hígado
+                q3: 'b', // Yogur natural
+                q4: 'c', // Amilasa
+                q5: 'b', // Absorber agua y formar heces
+                q6: 'b', // Aloe vera
+                q7: 'c', // 6-7 metros
+                q8: 'b', // Enfermedad de Crohn
+                q9: 'c', // Ciruelas pasas
+                q10: 'b' // Insulina
+            };
+
+            let score = 0;
+            let total = Object.keys(answers).length;
+            let allAnswered = true;
+
+            // Verificar respuestas
+            for (let question in answers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === answers[question]) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            
+            if (!allAnswered) {
+                resultDiv.className = 'result show fail';
+                resultDiv.innerHTML = '⚠️ Por favor, responde todas las preguntas antes de verificar.';
+                return;
+            }
+
+            const percentage = (score / total) * 100;
+            
+            if (percentage >= 70) {
+                resultDiv.className = 'result show pass';
+                resultDiv.innerHTML = `
+                    🎉 ¡Excelente! Has obtenido ${score} de ${total} respuestas correctas (${percentage.toFixed(0)}%)
+                    <br>¡Tienes un buen conocimiento sobre el sistema digestivo!
+                `;
+            } else {
+                resultDiv.className = 'result show fail';
+                resultDiv.innerHTML = `
+                    📚 Has obtenido ${score} de ${total} respuestas correctas (${percentage.toFixed(0)}%)
+                    <br>Te recomendamos revisar el contenido de esta página para mejorar tus conocimientos.
+                `;
+            }
+
+            // Scroll al resultado
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Efecto hover en las opciones
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+    </script>
+</body>
+</html>
